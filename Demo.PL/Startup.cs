@@ -31,6 +31,7 @@ namespace Demo.PL
             services.AddControllersWithViews();
             services.AddDbContext<App3TierArch>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")) );
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
