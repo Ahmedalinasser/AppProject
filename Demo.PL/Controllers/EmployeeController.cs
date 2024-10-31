@@ -53,14 +53,14 @@ namespace Demo.PL.Controllers
         }
 
 
-        public IActionResult Edit ([FromRoute] int? id)
+        public IActionResult Update ([FromRoute] int? id)
         {
-            return Details(id, "Edit");
+            return Details(id, "Update");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit (Employee employee , [FromRoute] int? id)
+        public IActionResult Update (Employee employee , [FromRoute] int? id)
         {
             if (id is null)
                 return BadRequest();
@@ -75,14 +75,14 @@ namespace Demo.PL.Controllers
         }
 
 
-        public IActionResult Remove([FromRoute] int? id)
+        public IActionResult Delete([FromRoute] int? id)
         {
-            return Details(id, "Remove");
+            return Details(id, "Delete");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Remove (Employee employee, [FromRoute] int? id)
+        public IActionResult Delete (Employee employee, [FromRoute] int? id)
         {
             if (id != employee.Id)
                 return NotFound();

@@ -11,9 +11,12 @@ namespace Demo.DAL.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Name IS Required")]
+        [MinLength(2, ErrorMessage = "Min length is 2 chars ")]
         [MaxLength(50)]
         public string Name { get; set; }
-        [Required(ErrorMessage ="Code is requred")]
+
+        [Required(ErrorMessage ="Code is required")]
+        [MinLength(1, ErrorMessage = "Min length is 1 chars ")]
         public string Code { get; set; }
         public DateTime DateOfCreation { get; set; }
 

@@ -36,8 +36,8 @@ creationdate
                 <td>@Html.DisplayNameFor(e=>e.PhoneNumber)</td>
                 <td>@Html.DisplayNameFor(e=>e.HireDate)</td>
                 <td>Details</td>
-                <td>Edit</td>
-                <td>Remove</td>
+                <td>Update</td>
+                <td>Delete</td>
             </tr>
         </thead>
 
@@ -55,8 +55,8 @@ creationdate
                     <td>@emp.PhoneNumber</td>
                     <td>@emp.HireDate</td>
                     <td><a asp-action="Details" asp-route-id="@emp.Id"  class="btn btn-secondary">Details</a></td>
-                    <td><a asp-action="Edit" asp-route-id="@emp.Id"  class="btn btn-secondary">Edit</a></td>
-                    <td><a asp-action="Remove" asp-route-id="@emp.Id"  class="btn btn-secondary">Remove</a></td>
+                    <td><a asp-action="Update" asp-route-id="@emp.Id"  class="btn btn-secondary">Update</a></td>
+                    <td><a asp-action="Delete" asp-route-id="@emp.Id"  class="btn btn-secondary">Delete</a></td>
 
                 </tr>
             }
