@@ -1,6 +1,7 @@
 ﻿using Demo.BLL.Interface;
 using Demo.DAL.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics.Arm;
 
@@ -9,19 +10,24 @@ namespace Demo.PL.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository _emp;
+        private readonly IDepartmentRepository _dep;
 
-        public EmployeeController(IEmployeeRepository emp)
+        public EmployeeController(IEmployeeRepository emp , IDepartmentRepository dep)
         {
             this._emp = emp;
+            this._dep = dep;
         }
         public IActionResult Index()
         {
+           // ViewBag.Message = "Hello From View Bag";
+
            var empModule = _emp.GetAll();
             return View( empModule);
         }
 
         public IActionResult Create()
         {
+            ViewBag.Departments = _dep.GetAll();
             return View();
         }
 
@@ -31,7 +37,9 @@ namespace Demo.PL.Controllers
         {
             if(ModelState.IsValid)
             {
-                _emp.Add(employee);
+                var result = _emp.Add(employee);
+                if (result > 0)
+                    TempData["M3"] = "Employee was Created successfully ";
                 return RedirectToAction("Index");
             }
             else
@@ -55,6 +63,7 @@ namespace Demo.PL.Controllers
 
         public IActionResult Update ([FromRoute] int? id)
         {
+            ViewBag.Departments = _dep.GetAll();
             return Details(id, "Update");
         }
 

@@ -7,6 +7,16 @@
 
  <a asp-action="Create" class="btn btn-success"> Create New Department </a>
  <br /> 
+
+ @if(TempData["M2"]  is not null)
+{
+  <div class=" alert alert-primary">
+     @* ViewData["Message"]*@
+     @TempData["M2"]
+ </div>
+}
+
+ 
 @if(Model.Count()>0)
 {
     <h1>All Departmens</h1>
@@ -31,9 +41,7 @@
                     <td> @dep.Code</td>
                     <td> @dep.Name</td>
                     <td> @dep.DateOfCreation</td>
-                    <td><a asp-action="Details" asp-route-id="@dep.Id" class="btn btn-secondary">Details</a></td>
-                    <td><a asp-action="Update"  asp-route-id="@dep.Id" class="btn btn-secondary">Update</a> </td>
-                    <td><a asp-action="Delete"  asp-route-id="@dep.Id" class="btn btn-secondary">Delete</a> </td>
+                    <partial name="_ButtonsPartialView" model="dep.Id"/>
                 </tr>
             }
         </tbody>

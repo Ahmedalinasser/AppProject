@@ -5,19 +5,15 @@
 }
 
 
-@*
-name 
-age 
-Adress
-salary 
-isActive 
-Email 
-phone number
-hiredare 
-creationdate 
-
-*@
 <a asp-action="Create" class="btn btn-success"> Create Employee</a>
+
+@if(TempData["M3"] is not null)
+{
+    <div class=" alert alert-success">
+        @*ViewBag.Message *@
+        @TempData["M3"]
+    </div>
+}
 
 @if(Model.Count() > 0)
 {
@@ -29,8 +25,9 @@ creationdate
             <tr>
                 <td>@Html.DisplayNameFor(e => e.Name)</td>
                 <td>@Html.DisplayNameFor(e =>e.Age)</td>
-                <td>@Html.DisplayNameFor(e=>e.Address)</td>
                 <td>@Html.DisplayNameFor(e => e.Salary)</td>
+                <td>@Html.DisplayNameFor(e => e.Department)</td>
+                <td>@Html.DisplayNameFor(e=>e.Address)</td>
                 <td>@Html.DisplayNameFor(e=>e.IsActive)</td>
                 <td>@Html.DisplayNameFor(e=>e.Email)</td>
                 <td>@Html.DisplayNameFor(e=>e.PhoneNumber)</td>
@@ -48,16 +45,27 @@ creationdate
                 <tr>
                     <td>@emp.Name</td>
                     <td>@emp.Age</td>
+                    <td>@Html.DisplayFor(E=>emp.Salary)</td>
+                    <td>@Html.DisplayFor(E=>emp.Department.Name)</td>
+                    @*<td>@emp.Department.Name</td>*@
                     <td>@emp.Address</td>
-                    <td>@emp.Salary</td>
-                    <td>@emp.IsActive</td>
-                    <td>@emp.Email</td>
-                    <td>@emp.PhoneNumber</td>
-                    <td>@emp.HireDate</td>
-                    <td><a asp-action="Details" asp-route-id="@emp.Id"  class="btn btn-secondary">Details</a></td>
-                    <td><a asp-action="Update" asp-route-id="@emp.Id"  class="btn btn-secondary">Update</a></td>
-                    <td><a asp-action="Delete" asp-route-id="@emp.Id"  class="btn btn-secondary">Delete</a></td>
+                    @*<td>@Html.DisplayFor(E=> emp.IsActive)</td>*@
+                    <td>
+                        @if(emp.IsActive == true)
+                        {
+                            <b style="color:green "> Active</b>
 
+                        }else
+                        {
+                             <b style="color:red "> Active</b>
+
+                        }
+
+                    </td>
+                    <td>@Html.DisplayFor(E=>emp.Email)</td>
+                    <td>@Html.DisplayFor(E=> emp.PhoneNumber)</td>
+                    <td>@emp.HireDate</td>
+                    <partial name="_ButtonsPartialView" model="emp.Id"/>
                 </tr>
             }
         </tbody>

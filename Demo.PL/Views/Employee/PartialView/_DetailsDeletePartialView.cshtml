@@ -1,0 +1,55 @@
+﻿@model Employee
+@{
+    var department = new SelectList(ViewBag.Departments , "Id" , "Name");
+}
+
+  <div class="form-group ">
+        <label asp-for="Name" class="col-form-label"></label>
+        <input type="text" readonly asp-for="Name"  class="form-control"/>
+      
+    </div>
+
+    <div class="form-group ">
+        <label asp-for="Age" class="col-form-label"></label>
+        <input type="text" readonly asp-for="Age" class="form-control"/>
+    </div>
+
+
+    <div class="form-group ">
+        <label asp-for="Salary" class="col-form-label"></label>
+        <input type="text" readonly  asp-for="Salary" class="form-control"/>
+
+    </div>
+
+    <div class="form-group ">
+        <label asp-for="Department" class="col-form-label"></label>
+        <select asp-for="DepartmentId" asp-items="@department">
+            <option value="@null"> ------- Select Department ------- </option>
+        </select>
+
+    </div>
+
+    <div class="form-group ">
+        <label asp-for="Address" class="col-form-label"></label>
+        <input type="text" readonly asp-for="Address" class="form-control"/>
+    </div>
+
+    <div class="form-group ">
+        <label asp-for="Email" class="col-form-label"></label>
+        <input type="text" readonly asp-for="Email" class="form-control"/>
+    </div>
+
+    <div class="form-group ">
+        <label asp-for="PhoneNumber" class="col-form-label"></label>
+        <input type="text"  readonly asp-for="PhoneNumber" class="form-control"/>
+    </div>
+
+    <div class="form-group ">
+        <label asp-for="HireDate" class="col-form-label"></label>
+        <input type="datetime-local"  readonly asp-for="HireDate"  class="form-control"/>
+    </div>
+
+    <div class="form-group ">
+        <label asp-for="IsActive" class="col-form-label"></label>
+        <input type="checkbox" readonly  asp-for="IsActive"  class="form-control"/>
+    </div>

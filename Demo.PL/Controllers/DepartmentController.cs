@@ -10,7 +10,7 @@ namespace Demo.PL.Controllers
     {
         private IDepartmentRepository _departmentRepository;
 
-        public object ModelSatate { get; private set; }
+        //public object ModelSatate { get; private set; }
 
         public DepartmentController(IDepartmentRepository departmentRepository)
         {
@@ -19,6 +19,7 @@ namespace Demo.PL.Controllers
 
         public IActionResult Index()
         {
+            //ViewData["Message"] = "Hello From View Data";
             var department = _departmentRepository.GetAll();
             return View(department);
         }
@@ -33,7 +34,12 @@ namespace Demo.PL.Controllers
         {
             if (ModelState.IsValid)
             {
-                _departmentRepository.Add(department);
+                
+                var result = _departmentRepository.Add(department);
+                if (result >0)
+                    TempData["M2"] = "Department was Created successfully";
+                    
+                
                 return RedirectToAction(nameof(Index));
             }
             else
