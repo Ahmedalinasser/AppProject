@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Employee>
+﻿@model IEnumerable<EmployeeViewModel>
 
 @{
     ViewData["Title"] = "All Employees";
@@ -19,11 +19,23 @@
 {
     <h1> All Employees </h1>
    <br />
+   <div class="row mt-5 mb-3">
+       <form asp-action="Index" class="row">
+           <div class="col-8">
+               <input type="text" name="SearchValue" placeholder="Enter Empoylee name"/>
+           </div>
+           <div class="col-4">
+               <input type="submit" value="Search" >
+           </div>
+       </form>
+   </div>
+
 
     <table class="table table-striped table-hover mt-3">
         <thead>
             <tr>
                 <td>@Html.DisplayNameFor(e => e.Name)</td>
+                <td>@Html.DisplayNameFor(e => e.Image)</td>
                 <td>@Html.DisplayNameFor(e =>e.Age)</td>
                 <td>@Html.DisplayNameFor(e => e.Salary)</td>
                 <td>@Html.DisplayNameFor(e => e.Department)</td>
@@ -44,6 +56,7 @@
             {
                 <tr>
                     <td>@emp.Name</td>
+                    <td > <img  class="rounded" hight="35" width="35" alt="Employee's Image'" src="~/Files/Images/@emp.ImageName"/></td>
                     <td>@emp.Age</td>
                     <td>@Html.DisplayFor(E=>emp.Salary)</td>
                     <td>@Html.DisplayFor(E=>emp.Department.Name)</td>

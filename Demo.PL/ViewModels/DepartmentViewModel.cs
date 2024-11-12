@@ -1,21 +1,23 @@
-﻿using System;
+﻿using Demo.DAL.Models;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System;
 
-namespace Demo.DAL.Models
+namespace Demo.PL.ViewModels
 {
-    public class Department
+    public class DepartmentViewModel
     {
+
+
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Name IS Required")]
+        [MinLength(2, ErrorMessage = "Min length is 2 chars ")]
         [MaxLength(50)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Code is required")]
+        [MinLength(1, ErrorMessage = "Min length is 1 chars ")]
         public string Code { get; set; }
         public DateTime DateOfCreation { get; set; }
 

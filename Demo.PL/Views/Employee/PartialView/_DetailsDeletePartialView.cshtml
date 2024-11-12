@@ -1,6 +1,7 @@
-﻿@model Employee
+﻿@model EmployeeViewModel
+@inject IDepartmentRepository departmentRepo
 @{
-    var department = new SelectList(ViewBag.Departments , "Id" , "Name");
+    var department = new SelectList(departmentRepo.GetAll() , "Id" , "Name");
 }
 
   <div class="form-group ">
@@ -23,7 +24,7 @@
 
     <div class="form-group ">
         <label asp-for="Department" class="col-form-label"></label>
-        <select asp-for="DepartmentId" asp-items="@department">
+        <select asp-for="DepartmentId" disabled asp-items="@department">
             <option value="@null"> ------- Select Department ------- </option>
         </select>
 
