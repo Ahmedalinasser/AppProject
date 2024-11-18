@@ -1,4 +1,5 @@
 ﻿using Demo.DAL.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Demo.DAL.Context
 {
-    public class App3TierArch : DbContext
+    public class App3TierArch : IdentityDbContext<ApplicationUser>
     {
         
         public App3TierArch(DbContextOptions<App3TierArch> options ) : base(options)
@@ -21,6 +22,7 @@ namespace Demo.DAL.Context
 
         public DbSet<Department> Departments { get; set; }   
         public DbSet<Employee> Employees { get; set; }
+
          
     }
 }

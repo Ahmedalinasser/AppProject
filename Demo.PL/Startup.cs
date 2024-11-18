@@ -1,10 +1,13 @@
 using Demo.BLL.Interface;
 using Demo.BLL.Repositories;
 using Demo.DAL.Context;
+using Demo.DAL.Models;
 using Demo.PL.MappingProfile;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +40,23 @@ namespace Demo.PL
             services.AddAutoMapper( m => m.AddProfile(new EmployeeProfile()));
             services.AddAutoMapper(m => m.AddProfile(new DepartmentProfile()));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddIdentity<ApplicationUser, IdentityRole>
+                (options => 
+                    {
+                        options.Password.RequireNonAlphanumeric = true; //@#$
+                        options.Password.RequireDigit = true; // 123
+                        options.Password.RequireLowercase = true; // asd
+                        options.Password.RequireUppercase = true; // ASD
+
+                    }).AddEntityFrameworkStores<App3TierArch>()
+                      .AddDefaultTokenProviders();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options => {
+                        options.LoginPath = "Account/Login";
+                        options.AccessDeniedPath = "Home/Error";
+                    
+                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,13 +77,14 @@ namespace Demo.PL
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

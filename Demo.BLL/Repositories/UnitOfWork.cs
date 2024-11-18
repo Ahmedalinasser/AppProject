@@ -24,8 +24,8 @@ namespace Demo.BLL.Repositories
             this._dbContext = dbContext;
         }
 
-        public int SaveChangesInDb()
-           => _dbContext.SaveChanges();
+        public async Task<int> SaveChangesInDbAsync()
+           => await _dbContext.SaveChangesAsync();
 
         public void Dispose()
         {

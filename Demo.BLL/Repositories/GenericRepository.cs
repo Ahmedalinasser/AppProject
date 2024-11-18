@@ -20,9 +20,9 @@ namespace Demo.BLL.Repositories
             this._context = context;
         }
 
-        public void Add(T item)
+        public async Task AddAsync(T item)
         {
-            _context.Add(item);
+           await _context.AddAsync(item);
         }
 
         public void Delete(T item)
@@ -30,19 +30,19 @@ namespace Demo.BLL.Repositories
             _context.Remove(item); 
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task <IEnumerable<T>> GetAllAsync()
         {
             if ( typeof(T) == typeof(Employee) )
             {
-                return (IEnumerable<T>)_context.Employees.Include(e => e.Department).ToList();
+                return  (IEnumerable<T>) await _context.Employees.Include(e => e.Department).ToListAsync();
             }
-            return _context.Set<T>().ToList();
+            return await _context.Set<T>().ToListAsync();
         }
 
 
 
-        public T GetById(int id)
-        => _context.Set<T>().Find(id);
+        public async Task<T> GetByIdAsync(int id)
+        => await _context.Set<T>().FindAsync(id);
            
         
 

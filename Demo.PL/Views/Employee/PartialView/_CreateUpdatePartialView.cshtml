@@ -2,7 +2,7 @@
 @model EmployeeViewModel
 @inject IDepartmentRepository departmentRepo
 @{
-    var department = new SelectList( departmentRepo.GetAll() , "Id", "Name");
+    var department = new SelectList( await departmentRepo.GetAllAsync() , "Id", "Name");
 }
 
 

@@ -13,7 +13,7 @@ namespace Demo.BLL.Interface
         public IDepartmentRepository DepartmentRepository { get; set; }
         public IEmployeeRepository EmployeeRepository { get; set; }
 
-        int SaveChangesInDb();
+        Task<int> SaveChangesInDbAsync();
 
 
     }
