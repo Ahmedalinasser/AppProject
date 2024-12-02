@@ -23,7 +23,7 @@ namespace Demo.DAL.Models
         public string Password { get; set; }
         [Required(ErrorMessage = "Confirm Password is required")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage ="Password Mach is Required")]
+        [Compare("Password", ErrorMessage ="Password Mach is Not Match ")]
         public string ConfirmPassword { get; set; }
         public bool IsAgree { get; set; }
 

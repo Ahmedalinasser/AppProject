@@ -1,0 +1,19 @@
+﻿@model UsersViewModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<form asp-action="ConfirmDelete" >  
+
+   <partial name="PartialView/_DetailsDeletePartialView"/>
+
+    <input type="submit" value="Delete" class="btn btn-danger"/> |
+    <a class="btn btn-light" asp-action="Index"> Back To list</a>
+</form>
+
+@section ValidationScriptSection{
+ <partial name="_ValidationScriptsPartial"/>
+}

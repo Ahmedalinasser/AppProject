@@ -3,9 +3,10 @@ using Demo.BLL.Interface;
 using Demo.DAL.Models;
 using Demo.PL.Helpers;
 using Demo.PL.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
-using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
+//using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics.Arm;
@@ -13,6 +14,8 @@ using System.Threading.Tasks;
 
 namespace Demo.PL.Controllers
 {
+    //[Authorize("Admin")]
+    [Authorize]
     public class EmployeeController : Controller
     {
 
@@ -60,7 +63,7 @@ namespace Demo.PL.Controllers
                 var result = await _unitOfWork.SaveChangesInDbAsync();
                 if (result > 0)
                     TempData["M3"] = "Employee was Created successfully ";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             else
             {
